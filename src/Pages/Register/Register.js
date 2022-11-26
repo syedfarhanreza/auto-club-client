@@ -1,19 +1,32 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 const Register = () => {
     const { register, formState: { errors }, handleSubmit } = useForm()
-    const {createUser} = useContext(AuthContext)
+    const { createUser, updateUser } = useContext(AuthContext);
+    const [signUpError, setSignUpError] = useState('');
     const handleRegister = data => {
         console.log(data);
+        setSignUpError('');
         createUser(data.email, data.password)
-        .then(result => {
-            const user = result.user;
-            console.log(user);
-        })
-        .catch(error => console.error(error))
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                toast('User Created Successfully')
+                const userInfo = {
+                    displayName: data.name
+                }
+                updateUser(userInfo)
+                    .then(() => { })
+                    .catch(err => console.log(err));
+            })
+            .catch(error => {
+                console.error(error)
+                setSignUpError(error.message)
+            })
     }
     return (
         <div className='h-[800px]  flex justify-center items-center'>
@@ -56,6 +69,7 @@ const Register = () => {
                     </select>
                     {errors.category && <p className='text-red-600 mb-4'>{errors.category?.message}</p>}
                     <input className='btn btn-primary w-full' value="Register" type="submit" />
+                    {signUpError && <p className='text-red-600'>{signUpError}</p>}
                 </form>
                 <p>Already have an account? <Link className='text-blue-600' to="/login">Login</Link></p>
             </div>
