@@ -5,6 +5,9 @@ import AudiCars from "../../Pages/Cars/AudiCars/AudiCars";
 import BenzCars from "../../Pages/Cars/BenzCars/BenzCars";
 import HondaCars from "../../Pages/Cars/HondaCars/HondaCars";
 import Dashboard from "../../Pages/Dashboard/DashBoard/Dashboard";
+import AddProduct from "../../Pages/Dashboard/SellerDashboard/AddProduct";
+import MyBuyers from "../../Pages/Dashboard/SellerDashboard/MyBuyers";
+import MyProduct from "../../Pages/Dashboard/SellerDashboard/MyProduct";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
 import Register from "../../Pages/Register/Register";
@@ -50,6 +53,18 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard',
                 element: <Dashboard></Dashboard>
+            },
+            {
+                path:'/dashboard/addProduct',
+                element: <AddProduct></AddProduct>
+            },
+            {
+                path: '/dashboard/myProduct',
+                element: <MyProduct></MyProduct>
+            },
+            {
+                path: '/dashboard/myBuyer',
+                element: <MyBuyers></MyBuyers>
             }
         ]
     },
