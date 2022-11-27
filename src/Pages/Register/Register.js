@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 const Register = () => {
@@ -9,6 +9,8 @@ const Register = () => {
     const { createUser, updateUser } = useContext(AuthContext);
     const [signUpError, setSignUpError] = useState('');
     const [createdUserEmail, setCreatedUserEmail] = useState('');
+    const navigate = useNavigate();
+
     const handleRegister = data => {
         console.log(data);
         setSignUpError('');
@@ -43,8 +45,21 @@ const Register = () => {
             .then(res => res.json())
             .then(data => {
                 setCreatedUserEmail(email);
+                getUserToken(email);
             })
     }
+
+    const  getUserToken = email => {
+        fetch(`http://localhost:5000/jwt?email=${email}`)
+        .then(res => res.json())
+        .then(data => {
+            if(data.accessToken){
+                localStorage.setItem('accessToken', data.accessToken)
+                navigate('/');
+            }
+        })
+    }
+
     return (
         <div className='h-[800px]  flex justify-center items-center'>
             <div className='w-96 p-7 shadow-2xl'>
