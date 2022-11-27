@@ -1,5 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../../Layout/Main";
+import AudiCars from "../../Pages/Cars/AudiCars/AudiCars";
+import BenzCars from "../../Pages/Cars/BenzCars/BenzCars";
+import HondaCars from "../../Pages/Cars/HondaCars/HondaCars";
 import Dashboard from "../../Pages/Dashboard/DashBoard/Dashboard";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
@@ -22,6 +25,18 @@ const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register></Register>
+            },
+            {
+                path: '/audis',
+                element: <AudiCars></AudiCars>
+            },
+            {
+                path: '/hondas',
+                element: <HondaCars></HondaCars>
+            },
+            {
+                path: '/mercedess',
+                element: <BenzCars></BenzCars>
             },
             
             
