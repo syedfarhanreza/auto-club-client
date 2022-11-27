@@ -38,7 +38,7 @@ const Categories = () => {
                         <h2 className="card-title text-4xl">MERCEDES-BENZ</h2>
                         <p>Checkout used Mercedese-Benz Cars.</p>
                         <div className="card-actions justify-end">
-                            <Link to='/mercedes'><button className="btn btn-outline text-white banner-title">See Cars</button></Link>
+                            <Link to='/mercedess'><button className="btn btn-outline text-white banner-title">See Cars</button></Link>
                         </div>
                     </div>
                 </div>

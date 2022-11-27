@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import CarModel from '../CarModel/CarModel';
 
 const HondaCars = () => {
     const { data: cars = [] } = useQuery({
@@ -9,7 +10,12 @@ const HondaCars = () => {
     });
     return (
         <div>
-            
+            {
+            cars.map(car => <CarModel
+                key={car._id}
+                car={car}
+                ></CarModel>)
+           }
         </div>
     );
 };
