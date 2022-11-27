@@ -8,6 +8,7 @@ const Register = () => {
     const { register, formState: { errors }, handleSubmit } = useForm()
     const { createUser, updateUser } = useContext(AuthContext);
     const [signUpError, setSignUpError] = useState('');
+    const [createdUserEmail, setCreatedUserEmail] = useState('');
     const handleRegister = data => {
         console.log(data);
         setSignUpError('');
@@ -20,12 +21,28 @@ const Register = () => {
                     displayName: data.name
                 }
                 updateUser(userInfo)
-                    .then(() => { })
+                    .then(() => {
+                        saveUser(data.name, data.email, data.role)
+                     })
                     .catch(err => console.log(err));
             })
             .catch(error => {
                 console.error(error)
                 setSignUpError(error.message)
+            })
+    }
+    const saveUser = (name, email, role) => {
+        const user = { name, email, role };
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                setCreatedUserEmail(email);
             })
     }
     return (
@@ -62,7 +79,7 @@ const Register = () => {
                             className="input input-bordered w-full max-w-xs" />
                         {errors.password && <p className='text-red-600'>{errors.password?.message}</p>}
                     </div>
-                    <select className='w-full mb-3' {...register("category", { required: "Please select category" })}>
+                    <select className='w-full mb-3' {...register("role", { required: "Please select role" })}>
                         <option value="">Select...</option>
                         <option value="seller">Seller</option>
                         <option value="buyer">Buyer</option>
