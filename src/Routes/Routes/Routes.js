@@ -15,6 +15,8 @@ import Register from "../../Pages/Register/Register";
 import DisplayError from "../../Pages/Shared/DisplayError/DisplayError";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import WrongRoute from "../../Pages/WrongRoute/WrongRoute";
+import Blog from "../../Pages/Blog/Blog";
+import AboutUs from "../../Pages/AboutUs/AboutUs";
 
 const router = createBrowserRouter([
     {
@@ -46,6 +48,14 @@ const router = createBrowserRouter([
                 path: '/mercedess',
                 element: <BenzCars></BenzCars>
             },
+            {
+                path: '/blog',
+                element: <Blog></Blog>
+            },
+            {
+                path: '/aboutus',
+                element: <AboutUs></AboutUs>
+            }
             
             
         ]
@@ -74,7 +84,7 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/payment/:id',
                 element: <Payment></Payment>,
-                loader: ({params}) => fetch(`http://localhost:5000/bookings/${params.id}`)
+                loader: ({params}) => fetch(`https://auto-club-server.vercel.app/bookings/${params.id}`)
             },
         ]
     },

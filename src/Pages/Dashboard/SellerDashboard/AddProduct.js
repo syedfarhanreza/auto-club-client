@@ -10,7 +10,7 @@ const AddProduct = () => {
     const { user } = useContext(AuthContext);
 
     const handleProductAdd = data => {
-        fetch(`http://localhost:5000/${data.categoryName}s`, {
+        fetch(`https://auto-club-server.vercel.app/${data.categoryName}s`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -20,7 +20,7 @@ const AddProduct = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                // navigate('/dashboard/myProduct')
+                navigate('/dashboard/myProduct')
             })
     }
     return (

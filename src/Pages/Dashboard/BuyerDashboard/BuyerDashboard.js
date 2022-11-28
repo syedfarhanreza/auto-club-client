@@ -5,7 +5,7 @@ import { AuthContext } from '../../../contexts/AuthProvider';
 
 const BuyerDashboard = () => {
     const { user } = useContext(AuthContext);
-    const url = `http://localhost:5000/bookings?email=${user?.email}`
+    const url = `https://auto-club-server.vercel.app/bookings?email=${user?.email}`
     const { data: bookings = [] } = useQuery({
         queryKey: ['bookings', user?.email],
         queryFn: async () => {
@@ -49,7 +49,7 @@ const BuyerDashboard = () => {
                                 </Link>
                                     }
                                 {
-                                    booking.currentPrice && booking.paid && <span className='text-2xl text-orange-700 font-bold'>Paid</span>
+                                    booking.currentPrice && booking.paid && <span className='text-2xl text-green-700 font-bold'>Paid</span>
                                 }
 
                             </td>

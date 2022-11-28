@@ -3,14 +3,30 @@ import React from 'react';
 
 const AllSeller = () => {
 
-    const { data: buyers = [] } = useQuery({
-        queryKey: ['buyers'],
+    const { data: seller = [] } = useQuery({
+        queryKey: ['seller'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/user?role=seller');
+            const res = await fetch('https://auto-club-server.vercel.app/user?role=seller');
             const data = await res.json();
             return data;
         }
     });
+    const handleDelete = id => {
+        const proceed = window.confirm('Are you sure, you want to delete this account?');
+        if (proceed) {
+            fetch(`https://auto-club-server.vercel.app/allUsers/${id}`, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    // console.log(data);
+                    if (data.deletedCount > 0) {
+                        alert('deleted successfully');
+
+                    }
+                })
+        }
+    }
 
     return (
         <div className='border my-20 w-3/4 mx-auto'>
@@ -26,12 +42,12 @@ const AllSeller = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {buyers.map((user, i) => <tr key={i}>
+                        {seller.map((user, i) => <tr key={i}>
                             <th>{i + 1}</th>
                             <td>{user?.name}</td>
                             <td>{user?.email}</td>
                             <td>{user?.role}</td>
-                            <td><button className='btn btn-outline'>Delete</button></td>
+                            <td><button onClick={() => handleDelete(user?._id)}  className='btn btn-outline'>Delete</button></td>
 
                         </tr>)}
                     </tbody>

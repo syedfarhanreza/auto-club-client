@@ -35,7 +35,7 @@ const Register = () => {
     }
     const saveUser = (name, email, role) => {
         const user = { name, email, role };
-        fetch('http://localhost:5000/users', {
+        fetch('https://auto-club-server.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -50,7 +50,7 @@ const Register = () => {
     }
 
     const  getUserToken = email => {
-        fetch(`http://localhost:5000/jwt?email=${email}`)
+        fetch(`https://auto-club-server.vercel.app/jwt?email=${email}`)
         .then(res => res.json())
         .then(data => {
             if(data.accessToken){
@@ -61,8 +61,8 @@ const Register = () => {
     }
 
     return (
-        <div className='h-[800px]  flex justify-center items-center'>
-            <div className='w-96 p-7 shadow-2xl'>
+        <div className='h-[800px]  flex justify-center items-center ' style={{ backgroundImage: `url("https://i.ibb.co/hgRvBYH/bg.webp")` }}>
+            <div className='w-96 p-7 shadow-2xl bg-white'>
                 <h2 className='text-2xl text-center font-bold'>Register</h2>
                 <form onSubmit={handleSubmit(handleRegister)}>
                     <div className="form-control w-full max-w-xs">

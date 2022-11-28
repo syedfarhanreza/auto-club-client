@@ -11,7 +11,7 @@ const Dashboard = () => {
     const { data: users = {} } = useQuery({
         queryKey: ['users', user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/users?email=${user?.email}`);
+            const res = await fetch(`https://auto-club-server.vercel.app/users?email=${user?.email}`);
             const data = await res.json();
             return data;
         }
