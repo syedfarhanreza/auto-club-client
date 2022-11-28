@@ -10,14 +10,16 @@ import MyBuyers from "../../Pages/Dashboard/SellerDashboard/MyBuyers";
 import MyProduct from "../../Pages/Dashboard/SellerDashboard/MyProduct";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
-import Payment from "../../Pages/Payment/Payment";
+import Payment from "../../Pages/Dashboard/Payment/Payment";
 import Register from "../../Pages/Register/Register";
+import DisplayError from "../../Pages/Shared/DisplayError/DisplayError";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
+        errorElement: <DisplayError></DisplayError>,
         children: [
             {
                 path: '/',
@@ -50,6 +52,7 @@ const router = createBrowserRouter([
     {
         path: '/dashboard',
         element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+        errorElement: <DisplayError></DisplayError>,
         children: [
             {
                 path: '/dashboard',
@@ -69,7 +72,8 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/payment/:id',
-                element: <Payment></Payment>
+                element: <Payment></Payment>,
+                loader: ({params}) => fetch(`http://localhost:5000/bookings/${params.id}`)
             },
         ]
     },
