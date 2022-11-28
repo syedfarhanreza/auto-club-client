@@ -14,6 +14,7 @@ import Payment from "../../Pages/Dashboard/Payment/Payment";
 import Register from "../../Pages/Register/Register";
 import DisplayError from "../../Pages/Shared/DisplayError/DisplayError";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import WrongRoute from "../../Pages/WrongRoute/WrongRoute";
 
 const router = createBrowserRouter([
     {
@@ -77,6 +78,10 @@ const router = createBrowserRouter([
             },
         ]
     },
+    {
+        path: '*',
+        element: <WrongRoute></WrongRoute>
+    }
 ])
 
 export default router;
