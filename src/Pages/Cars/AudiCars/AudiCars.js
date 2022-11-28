@@ -12,23 +12,23 @@ const AudiCars = () => {
             .then(res => res.json())
     });
     return (
-       <div>
-         <div>
-           
-           {
-            cars.map(car => <CarModel
-                key={car._id}
-                car={car}
-                setCarName={setCarName}
-                ></CarModel>)
-           }
+        <div>
+            <div>
+
+                {
+                    cars.map(car => <CarModel
+                        key={car._id}
+                        car={car}
+                        setCarName={setCarName}
+                    ></CarModel>)
+                }
+            </div>
+            {
+                nameOfCar && <BookingModal
+                    nameOfCar={nameOfCar}>
+                </BookingModal>
+            }
         </div>
-        {
-            nameOfCar && <BookingModal 
-             nameOfCar={nameOfCar}>
-             </BookingModal>
-        }
-       </div>
     );
 };
 

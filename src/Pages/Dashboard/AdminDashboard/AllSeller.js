@@ -13,7 +13,7 @@ const AllSeller = () => {
     });
 
     return (
-        <div className='border my-20'>
+        <div className='border my-20 w-3/4 mx-auto'>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     <thead>
