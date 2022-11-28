@@ -41,18 +41,18 @@ const BuyerDashboard = () => {
                                 <td><img className='w-20' src={booking.img} alt="" /></td>
                                 <td>{booking.carName}</td>
                                 <td>${booking.currentPrice}</td>
-                                {/* <td>
+                                <td>
                                     {
                                         booking.currentPrice && !booking.paid &&
-                                        <Link to={/dashboard/payment / ${booking._id}}>
-                                    <button className='btn'>PAY NOW</button>
+                                        <Link to={`/dashboard/payment/${booking._id}`}>
+                                    <button className='btn btn-info btn-sm'>PAY NOW</button>
                                 </Link>
                                     }
                                 {
                                     booking.currentPrice && booking.paid && <span className='text-2xl text-orange-700 font-bold'>Paid</span>
                                 }
 
-                            </td> */}
+                            </td>
                             </tr>)
                         }
                     </tbody>
