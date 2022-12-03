@@ -7,6 +7,3 @@
 * install tailwind
 * there are 3 role (admin, buyer, seller)
 * payment method added, jwt used
-
-adminEmail: admin@autoclub.com
-adminPassword: F@123456
